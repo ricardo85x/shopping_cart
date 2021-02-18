@@ -1,0 +1,35 @@
+* {
+  margin: 0;
+  padding: 0; 
+  outline: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #f5f5f5;
+  font: 14px sans-serif;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.header > div {
+  padding: 5px;
+}
+
+.header .title {
+  font-size: 2.5em;
+  font-weight: 600;
+}
+
+.header .user {
+  display: flex;
+}
+
+.header .user > div {
+  padding: 5px;
+}
