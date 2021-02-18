@@ -1,5 +1,14 @@
-export const hello = () => {
-  return "Hello World";
+import React from 'react'
+import Header from './components/Header'
+
+function App() {
+  
+  return (
+    <>
+      <Header />
+      <hr/>
+    </>
+  )
 }
 
-// export test
+export default App;
