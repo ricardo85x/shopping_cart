@@ -1,0 +1,8 @@
+{
+  "name": "shopping_cart",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ricardo85x/shopping_cart.git",
+  "author": "Ricardo <ricardo85x@gmail.com>",
+  "license": "MIT"
+}
