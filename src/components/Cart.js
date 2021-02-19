@@ -1,6 +1,16 @@
 import React from 'react'
 
-export default function Cart({cart}) {
+export default function Cart({products,setProducts, cart, setCart}) {
+
+
+  function handleAdd(){
+
+  }
+
+  function handleRemove(){
+
+  }
+
   return (
     <div className="cartList" >
       <div className="header">

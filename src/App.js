@@ -25,18 +25,18 @@ function App() {
         if (response.status == 200){
           setProducts(response.data.products)
 
-          setCart(
-            response.data.products.map(
-              (x) => { 
-                return { 
-                  "id": x.id,
-                  "name": x.name, 
-                  "price": x.price,
-                  "quantity": 1
-                }
-              }
-            )
-          )
+          // setCart(
+          //   response.data.products.map(
+          //     (x) => { 
+          //       return { 
+          //         "id": x.id,
+          //         "name": x.name, 
+          //         "price": x.price,
+          //         "quantity": 1
+          //       }
+          //     }
+          //   )
+          // )
 
         }
       }).catch(error => {
@@ -64,6 +64,9 @@ function App() {
 
 
 
+
+
+
   
   return (
     <div className="container">
@@ -72,8 +75,8 @@ function App() {
       <div className="main">
 
         { apiError && <>
-            <Products prods={products}/>
-            <Cart cart={cart} />
+            <Products products={products} setProducts={setProducts} cart={cart} setCart={setCart}/>
+            <Cart products={products} setProducts={setProducts} cart={cart} setCart={setCart} />
           </>
         }
         { !apiError && (
