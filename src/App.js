@@ -20,6 +20,8 @@ function App() {
     "weight": 0
   })
 
+  const [discount, setDiscount] = useState({})
+
   const [apiError, setApiError] = useState(1)
 
 
@@ -102,17 +104,31 @@ function App() {
       }
 
       setPrices({...prices, weight: weight })
+      let current_shipping = 0
+
 
       if (prices.subtotal > 400) {
-        setPrices({...prices, shipping: 0 })
+
+        setPrices({...prices, 
+          shipping: current_shipping, 
+          total: (prices.subtotal + current_shipping) - prices.discount
+        })
+
       } else {
 
         if (weight <= 10){
-          setPrices({...prices, shipping: 30 })
+          current_shipping = 30
+          setPrices({...prices, 
+            shipping: current_shipping, 
+            total: (prices.subtotal + current_shipping) - prices.discount
+          })
 
         } else {
-          setPrices({...prices, shipping: 30 + Math.floor((weight -10) /5) * 7 })
-
+          current_shipping = 30 + Math.floor((weight -10) /5) * 7
+          setPrices({...prices, 
+            shipping: current_shipping, 
+            total: (prices.subtotal + current_shipping) - prices.discount
+          })
         }
       }
 
@@ -125,9 +141,51 @@ function App() {
     }
   }
 
+
+
+
   function handleVourcher() {
+    if (discount != {}){
+      console.log("Disconto atual", discount)
+
+      let current_discount = 0
+
+      if (discount.type == "percentual") {
+
+        current_discount = prices.subtotal * (discount.amount/100)
+        setPrices({...prices, 
+          discount: current_discount,
+          total: (prices.subtotal + prices.shipping) - current_discount
+        
+        })
+        
+      } else  if (discount.type == "fixed") {
+
+        current_discount = (prices.subtotal + prices.shipping) > discount.amount ? discount.amount :  (prices.subtotal + prices.shipping)
+        setPrices({...prices, 
+          discount: current_discount,
+          total: (prices.subtotal + prices.shipping) - current_discount
+
+        
+        })
 
 
+      } else  if (discount.type == "shipping") {
+
+        if (prices.subtotal >= discount.minValue ){
+
+          current_discount = prices.shipping
+
+          setPrices({...prices, 
+            discount: current_discount,
+            total: (prices.subtotal + prices.shipping) - current_discount
+          })
+
+        }
+
+      }
+
+    }
   }
 
   // update price
@@ -141,12 +199,9 @@ function App() {
 
   useEffect( () => {
     handleVourcher()    
-  }, [prices.shipping])
+  }, [prices.subtotal, prices.shipping, discount])
 
   
-
-
-
 
 
   
@@ -170,6 +225,7 @@ function App() {
           apiError === 1 && <>
             <Products products={products} setProducts={setProducts} cart={cart} setCart={setCart}/>
             <Cart 
+              setDiscount={setDiscount} discount={discount} vouchers={vouchers}
               products={products} setProducts={setProducts} cart={cart} setCart={setCart} 
               prices={prices}
             />

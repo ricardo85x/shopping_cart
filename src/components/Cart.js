@@ -1,9 +1,27 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export default function Cart({products,setProducts, cart, setCart, prices}) {
+export default function Cart({products,setProducts, cart, setCart, prices, discount, setDiscount, vouchers}) {
+
+
+  const [cupom, setCupom] = useState("")
+
+  function handleAddCupom(){
+
+    let current_discount = vouchers.find((item) => item.code == cupom)
+
+    if (current_discount){
+      setDiscount(current_discount)
+
+      alert("new cupom!")
+    } else {
+      setDiscount({})
+    }
+  }
 
 
   function handleAdd(item){
+
+
 
     
     const current_prod = products.find((prod) => prod.id == item.id)
@@ -84,8 +102,8 @@ export default function Cart({products,setProducts, cart, setCart, prices}) {
 
       <div className="cupom">
 
-        <input type="text" name="cupom" placeholder="Discont Code"/>
-        <button> APPLY </button>
+        <input type="text" name="cupom" value={cupom} onChange={(e) => setCupom(e.target.value)}  placeholder="Discont Code"/>
+        <button onClick={() => handleAddCupom()}> APPLY </button>
       </div>
 
       <div className="cart-item">
