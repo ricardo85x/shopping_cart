@@ -9,6 +9,14 @@ body {
   background: #f5f5f5;
   font: 14px sans-serif;
   color: #333;
+
+}
+
+.baseContainer {
+  max-width: 1200px;
+  /* display: flex;
+  align-items: center;
+  justify-content: space-between; */
 }
 
 .header {
@@ -32,4 +40,162 @@ body {
 
 .header .user > div {
   padding: 5px;
+}
+
+.productList {
+
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.productList .product {
+
+  padding: 5px;
+  margin: 2px;
+  min-width: 150px;
+  height: 170px;
+  background-color: darkgray;
+  text-align: left;
+  border-radius: 3px;
+}
+
+.product .image {
+  height: 80px;
+  background-color: dimgrey;
+  margin-bottom: 10px;
+
+}
+
+.product .title {
+  font-weight: bold;
+}
+
+.product .footer {
+  margin-top: 10px;
+
+}
+
+.product .footer button {
+  width: 100%;
+  height: 25px;
+  font-size: 1.2em;
+}
+
+.container {
+
+
+  max-width: 980px;
+
+  margin: 0 auto;
+
+
+}
+
+.container .main {
+
+
+
+  
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 310px;
+
+}
+
+.cart {
+  border: 0.5px solid rgb(161, 160, 160);
+  display: grid;
+  grid-template-columns: 50px 1fr 50px;
+  margin-bottom: 5px;
+  margin-right: 10px;
+  border-radius: 2px;
+}
+
+.cart .image {
+  width: 50px;
+  height: 50px;
+  background-color: rgb(161, 160, 160);
+  border-radius: 3px;
+}
+
+.cart .info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart .body, .cart .buttons {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-left: 0.5px solid rgb(161, 160, 160);
+  text-align: left;
+}
+
+.cart .body .info {
+  align-self: end;
+}
+
+.cart .body > div {
+  margin: 4px;
+}
+
+.cart .buttons  {
+  width: 50px;
+  font-size: 1.5em;
+}
+
+.cartList .header {
+  text-align: center;
+  margin-bottom: 5px;
+
+}
+
+.cartList .cupom {
+  display: grid;
+  grid-template-columns: 1fr 100px;
+  margin-right: 10px;
+
+  margin-bottom: 10px;
+
+}
+
+.cartList .cupom button {
+  font-size: 1.5em;
+  font-weight: bolder;
+  padding: 10px;
+}
+
+.cartList .cupom input {
+  font-size: 1em;
+  border: 1px solid rgb(161, 160, 160);
+  padding-left: 5px;
+  text-align: left;
+}
+
+.cartList .header {
+  font-size: 1.5em;
+}
+
+.cartList .cart-item {
+  margin-right: 10px;
+  display: flex;
+  justify-content: space-between;
+
+  /* border-top: 1px solid grey; */
+}
+
+.cartList .cart-item > div {
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.cartList .checkout {
+  margin-right: 10px;
+
+}
+.cartList .checkout button {
+  width: 100%;
+  height: 40px;
+  font-size: 2em;
+  font-weight: bold;
+  color:green;
 }
