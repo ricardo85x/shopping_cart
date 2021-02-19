@@ -3,13 +3,45 @@ import React from 'react'
 export default function Cart({products,setProducts, cart, setCart}) {
 
 
-  function handleAdd(){
+  function handleAdd(item){
+
+    
+    const current_prod = products.find((prod) => prod.id == item.id)
+
+    if (current_prod.available > 0) {
+
+      setCart(cart.map(x => (x.id === item.id ? { ...x, 
+        "quantity": x.quantity + 1
+      } : x)))
+  
+      setProducts(products.map(x => (x.id === item.id ? { ...x, 
+        "available": x.available -1
+      } : x)))
+
+    }
+
 
   }
 
-  function handleRemove(){
+  function handleRemove(item){
+
+   
+    if (item.quantity > 1) {
+      setCart(cart.map(x => (x.id === item.id ? { ...x, 
+        "quantity": x.quantity - 1
+      } : x)))
+    } else {
+
+      setCart(cart.filter((x) => x.id != item.id))
+      
+    }
+   
+    setProducts(products.map(x => (x.id === item.id ? { ...x, 
+      "available": x.available +1
+    } : x)))
 
   }
+
 
   return (
     <div className="cartList" >
@@ -39,8 +71,8 @@ export default function Cart({products,setProducts, cart, setCart}) {
             </div>
 
             <div className="buttons">
-              <button>+</button>
-              <button>-</button>
+              <button onClick={() => handleAdd(item)}>+</button>
+              <button onClick={() => handleRemove(item)}>-</button>
             </div>
             
           </div>
