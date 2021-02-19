@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Cart({products,setProducts, cart, setCart}) {
+export default function Cart({products,setProducts, cart, setCart, prices}) {
 
 
   function handleAdd(item){
@@ -33,7 +33,7 @@ export default function Cart({products,setProducts, cart, setCart}) {
     } else {
 
       setCart(cart.filter((x) => x.id != item.id))
-      
+
     }
    
     setProducts(products.map(x => (x.id === item.id ? { ...x, 
@@ -90,22 +90,22 @@ export default function Cart({products,setProducts, cart, setCart}) {
 
       <div className="cart-item">
         <div>Subtotal</div>
-        <div>$10.99</div>
+        <div>$ {prices.subtotal}</div>
       </div>
 
       <div className="cart-item">
         <div>Shipping</div>
-        <div>$10.99</div>
+        <div>$ {prices.shipping}</div>
       </div>
 
       <div className="cart-item">
         <div>Discount</div>
-        <div>$10.99</div>
+        <div>$ {prices.discount}</div>
       </div>
   
       <div className="cart-item total">
         <div>Total</div>
-        <div>$10.99</div>
+        <div>$ {prices.total}</div>
       </div>
 
 

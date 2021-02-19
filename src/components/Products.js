@@ -23,7 +23,6 @@ export default function Products({products,setProducts, cart, setCart}) {
 
       }
      
-
       console.log("Lado 1")
     } else {
       console.log("Lado 2")
