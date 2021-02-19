@@ -9,6 +9,7 @@ import './App.css'
 
 function App() {
 
+  // define state variables
   const [products, setProducts] = useState([])
   const [vouchers, setVouchers] = useState([])
   const [cart, setCart] = useState([])
@@ -22,6 +23,7 @@ function App() {
 
   const [discount, setDiscount] = useState({})
 
+  // valide when api return error
   const [apiError, setApiError] = useState(1)
 
 
@@ -56,29 +58,30 @@ function App() {
       
 
     }, 
-    [apiError] // array watchers
+    [apiError] 
   )
 
+
+  // calculate subtotal value
   async function handleSubtotal() {
 
     if (cart.length > 0){
       let subtotal = 0;
       if (cart.length > 1){
-
+        
         subtotal = cart.map(
           item => item.price * item.quantity)
-          .reduce((prev, next) => {
-            return prev + next ; 
-           })
+            .reduce((prev, next) => {
+              return prev + next ; 
+            })
+
       } else {
         subtotal = cart[0].price * cart[0].quantity
       }
 
       setPrices({...prices, subtotal: subtotal })
      
-
     } else {
-      console.log("DEB 3")
       setPrices({
         "subtotal": 0,
         "shipping": 0,
@@ -90,9 +93,8 @@ function App() {
     }
   }
 
+  // calculate shipping and total values
   function handleShipping() {
-
-
 
     if (prices.subtotal > 0){
 
@@ -132,22 +134,14 @@ function App() {
         }
       }
 
-
-
-
-      console.log(weight)
-
-
     }
   }
 
 
 
-
+  // calculate vourcher and total values
   function handleVourcher() {
     if (discount != {}){
-      console.log("Disconto atual", discount)
-
       let current_discount = 0
 
       if (discount.type == "percentual") {
@@ -156,25 +150,34 @@ function App() {
         setPrices({...prices, 
           discount: current_discount,
           total: (prices.subtotal + prices.shipping) - current_discount
-        
         })
         
       } else  if (discount.type == "fixed") {
 
-        current_discount = (prices.subtotal + prices.shipping) > discount.amount ? discount.amount :  (prices.subtotal + prices.shipping)
+        // check if total is above the cupoum, if it is lower set the discount to total
+        current_discount = 
+          (prices.subtotal + prices.shipping) > discount.amount ? 
+            discount.amount :  
+            (prices.subtotal + prices.shipping)
+
         setPrices({...prices, 
           discount: current_discount,
           total: (prices.subtotal + prices.shipping) - current_discount
-
-        
         })
-
 
       } else  if (discount.type == "shipping") {
 
         if (prices.subtotal >= discount.minValue ){
 
           current_discount = prices.shipping
+
+          setPrices({...prices, 
+            discount: current_discount,
+            total: (prices.subtotal + prices.shipping) - current_discount
+          })
+
+        } else {
+          current_discount = 0
 
           setPrices({...prices, 
             discount: current_discount,
@@ -202,19 +205,6 @@ function App() {
   }, [prices.subtotal, prices.shipping, discount])
 
   
-
-
-  
-
-
-
-
-
-
-
-
-
-  
   return (
     <div className="container">
       <Header />
@@ -239,7 +229,6 @@ function App() {
             <h2>Wait some seconds and reload the page</h2>
           </div>
           )}
-
 
       </div>
 

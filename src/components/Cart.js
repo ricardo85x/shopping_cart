@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 export default function Cart({products,setProducts, cart, setCart, prices, discount, setDiscount, vouchers}) {
 
 
+  // state from user 
   const [cupom, setCupom] = useState("")
 
   function handleAddCupom(){
