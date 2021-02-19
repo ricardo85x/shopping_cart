@@ -19,7 +19,7 @@ export default function Cart({cart}) {
 
             <div className="body">
            
-              <div>{item.name}</div>
+              <div className="title">{item.name}</div>
               <div className="info">
                 
                 <div>Quantity: {item.quantity}</div>

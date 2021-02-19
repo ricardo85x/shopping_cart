@@ -12,6 +12,20 @@ body {
 
 }
 
+.user .avatar {
+  width: 28px;
+  height: 28px;
+  background-color: maroon;
+
+  border-radius: 14px;
+}
+
+.user .username {
+
+ font-weight: bold;
+}
+
+
 .baseContainer {
   max-width: 1200px;
   /* display: flex;
@@ -22,7 +36,9 @@ body {
 .header {
   display: flex;
   justify-content: space-between;
-
+  background-color: rgb(201, 201, 201);
+  border-radius: 2px;
+  padding:10px;
 }
 
 .header > div {
@@ -66,7 +82,7 @@ body {
 
 }
 
-.product .title {
+.body .title {
   font-weight: bold;
 }
 
@@ -78,7 +94,8 @@ body {
 .product .footer button {
   width: 100%;
   height: 25px;
-  font-size: 1.2em;
+  font-size: 1.4em;
+  border-radius: 0;
 }
 
 .container {
@@ -107,7 +124,7 @@ body {
   display: grid;
   grid-template-columns: 50px 1fr 50px;
   margin-bottom: 5px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
   border-radius: 2px;
 }
 
@@ -152,7 +169,7 @@ body {
 .cartList .cupom {
   display: grid;
   grid-template-columns: 1fr 100px;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 
   margin-bottom: 10px;
 
@@ -176,7 +193,7 @@ body {
 }
 
 .cartList .cart-item {
-  margin-right: 10px;
+  /* margin-right: 10px; */
   display: flex;
   justify-content: space-between;
 
@@ -189,7 +206,7 @@ body {
 }
 
 .cartList .checkout {
-  margin-right: 10px;
+  /* margin-right: 10px; */
 
 }
 .cartList .checkout button {

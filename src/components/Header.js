@@ -7,8 +7,8 @@ export default function Header() {
         Shopping Cart
       </div>
       <div className='user'>
-        <div>Avatar</div>
-        <div>Ricardo</div>
+        <div className="avatar"></div>
+        <div className="username">Ricardo</div>
       </div>
     </div>)
 }

@@ -13,6 +13,8 @@ function App() {
   const [vouchers, setVouchers] = useState([])
   const [cart, setCart] = useState([])
 
+  const [apiError, setApiError] = useState(false)
+
 
   useEffect(
     () => {
@@ -37,6 +39,9 @@ function App() {
           )
 
         }
+      }).catch(error => {
+        console.log("Errr 3", error)
+        setApiError(true)
       })
       
 
@@ -45,11 +50,16 @@ function App() {
         if (response.status == 200){
           setVouchers(response.data.vouchers)
         }
+      }).catch(error => {
+        console.log("Error 3", error)
+        setApiError(true)
       })
 
     }, 
     [] // array watchers
   )
+
+
 
 
 
@@ -61,9 +71,18 @@ function App() {
       
       <div className="main">
 
-        <Products prods={products}/>
+        { apiError && <>
+            <Products prods={products}/>
+            <Cart cart={cart} />
+          </>
+        }
+        { !apiError && (
+          <div>
+            <h1>Oups something went wrong</h1>
+            <h2>Wait some seconds and reload the page</h2>
+          </div>
+        )}
 
-        <Cart cart={cart} />
         
 
       </div>
